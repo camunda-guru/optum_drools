@@ -1,0 +1,14 @@
+set KIE_SERVER_USER=-Dorg.kie.server.user=eswaribala
+set KIE_SERVER_PWD=-Dorg.kie.server.pwd=test@123
+set KIE_CONTROLLER_USER=-Dorg.kie.server.controller.user=eswaribala
+set KIE_CONTROLLER_PWD=-Dorg.kie.server.controller.pwd=test@123
+
+set KIE_CONTROLLER_URL=http://localhost:7070/kie-drools-wb-7.4.1.Final-wildfly10/rest/controller
+set KIE_SERVER_URL=http://localhost:7070/kie-server-7.4.1.Final-ee7/services/rest/server
+set KIE_SERVER=-Dorg.kie.server.location=%KIE_SERVER_URL%
+set KIE_CONTROLLER=-Dorg.kie.server.controller=%KIE_CONTROLLER_URL%
+
+
+set KIE_SERVER_ID=-Dorg.kie.server.id=wildfly-kieserver
+
+set SERVER_OPTS=%SERVER_CONFIG% %KIE_SERVER_USER% %KIE_SERVER_PWD% %KIE_CONTROLLER_USER% %KIE_CONTROLLER_PWD% %KIE_SERVER% %KIE_CONTROLLER% %KIE_SERVER_ID%
