@@ -1,0 +1,39 @@
+//created on: 2 Sep, 2016
+package com.optum.rulespack
+
+//list any import classes here.
+import com.optum.models.Alarm;
+import com.optum.models.Sprinkler;
+
+//declare any global variables here
+dialect "java"
+  no-loop  
+rule "Reset the Alarm When it is off"
+  date-effective "06-JUN-2017"
+    when
+        $alarm:Alarm(isStatus()==false)
+    then
+        $alarm.setStatus(true);
+        System.out.println("Alarm Rule Executed");
+
+end
+
+rule "Reset the WaterLine When it is off"
+
+    when
+        $sprinkler:Sprinkler(isWaterLine()==false)
+    then
+        $sprinkler.setWaterLine(true);
+        System.out.println("Sprinkler Rule Executed");
+
+end
+
+rule "Close the WaterLine When Alarm is off "
+ salience( 5 )
+    when
+        $alarm:Alarm(isStatus()==false) and
+        $sprinkler:Sprinkler(isWaterLine()==false)
+    then
+       System.out.println("Everything OK");
+ 		System.out.println("Alarm and Sprinkler Rule Executed");
+end
