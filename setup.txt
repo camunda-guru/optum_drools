@@ -1,31 +1,7 @@
->standalone.bat --server-config=standalone.xml -Dorg.kie.server.id=wildfly-kieserver -Dorg.kie.server.location=http://localhost:6060/kie-server/services/rest/server -Dorg.kie.server.controller=http://localhost:6060/kie-wb/rest/controller
-
-
-
-
-
-
-roles
-admin,kie-server,rest-all,kiemgmt
-
-
-add-user -a -u kieserver -p kieserver -ro admin,kie-server,rest-all,kiemgmt
-for blockout 
-set "JAVA_OPTS=%JAVA_OPTS% -Djboss.as.management.blocking.timeout=600
-
-<connection-url>jdbc:h2:http://169.254.150.45:8082:test;DB_CLOSE_DELAY=-1;MVCC=TRUE";DB_CLOSE_ON_EXIT=FALSE</connection-url>
-
-shut down
-jboss-cli.bat --connect command=shutdown
-
-add the following in standalone conf.bat
-
-set SERVER_CONFIG=--server-config=standalone.xml
-
-set KIE_SERVER_USER=-Dorg.kie.server.user=kieserver
-set KIE_SERVER_PWD=-Dorg.kie.server.pwd=kieserver
-set KIE_CONTROLLER_USER=-Dorg.kie.server.controller.user=kieserver
-set KIE_CONTROLLER_PWD=-Dorg.kie.server.controller.pwd=kieserver
+set KIE_SERVER_USER=-Dorg.kie.server.user=eswaribala
+set KIE_SERVER_PWD=-Dorg.kie.server.pwd=test@123
+set KIE_CONTROLLER_USER=-Dorg.kie.server.controller.user=eswaribala
+set KIE_CONTROLLER_PWD=-Dorg.kie.server.controller.pwd=test@123
 
 set KIE_CONTROLLER_URL=http://localhost:7070/kie-drools-wb-7.4.1.Final-wildfly10/rest/controller
 set KIE_SERVER_URL=http://localhost:7070/kie-server-7.4.1.Final-ee7/services/rest/server
@@ -36,3 +12,12 @@ set KIE_CONTROLLER=-Dorg.kie.server.controller=%KIE_CONTROLLER_URL%
 set KIE_SERVER_ID=-Dorg.kie.server.id=wildfly-kieserver
 
 set SERVER_OPTS=%SERVER_CONFIG% %KIE_SERVER_USER% %KIE_SERVER_PWD% %KIE_CONTROLLER_USER% %KIE_CONTROLLER_PWD% %KIE_SERVER% %KIE_CONTROLLER% %KIE_SERVER_ID%
+
+
+
+
+                        <login-module code="org.kie.security.jaas.KieLoginModule" flag="optional" module="deployment.jbpm-console.war"/>
+
+
+
+
