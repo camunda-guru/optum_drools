@@ -1,3 +1,22 @@
+setup drools/jbpm 
+
+1. extract wildfly
+2. go to standalone configuration
+3. rename stanalone.xml to standalone_old.xml
+4. rename standalone-full.xml to standalone.xml
+5. If needed change port no in standalone.xml
+6.go to bin folder
+7. open standalone.conf add the following
+set "JAVA_OPTS=%JAVA_OPTS% -Djboss.as.management.blocking.timeout=600
+8. increase jvm space if needed
+9.add-user roles
+admin,kie-server,rest-all,kiemgmt
+add-user -a -u kieserver -p kieserver -ro admin,kie-server,rest-all,kiemgmt
+10.start the server
+11.deploy kie/ jbpm war and kie-server
+12.stop the server
+13.add the following in standalone.conf
+
 set KIE_SERVER_USER=-Dorg.kie.server.user=eswaribala
 set KIE_SERVER_PWD=-Dorg.kie.server.pwd=test@123
 set KIE_CONTROLLER_USER=-Dorg.kie.server.controller.user=eswaribala
@@ -13,11 +32,12 @@ set KIE_SERVER_ID=-Dorg.kie.server.id=wildfly-kieserver
 
 set SERVER_OPTS=%SERVER_CONFIG% %KIE_SERVER_USER% %KIE_SERVER_PWD% %KIE_CONTROLLER_USER% %KIE_CONTROLLER_PWD% %KIE_SERVER% %KIE_CONTROLLER% %KIE_SERVER_ID%
 
-
+14.go to standalone.xml, add the following in login module setup
+ 
 
 
                         <login-module code="org.kie.security.jaas.KieLoginModule" flag="optional" module="deployment.jbpm-console.war"/>
-
+15. start the server and access kie workbench
 
 
 
